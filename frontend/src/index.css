@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+
+  --color-surface-bg: var(--surface-bg);
+  --color-surface-card: var(--surface-card);
+  --color-surface-text: var(--surface-text);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-border: var(--surface-border);
+}
+
+:root {
+  --brand-50: #eef2ff;
+  --brand-100: #e0e7ff;
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --brand-700: #4338ca;
+
+  --surface-bg: #f8fafc;
+  --surface-card: #ffffff;
+  --surface-text: #0f172a;
+  --surface-muted: #64748b;
+  --surface-border: #e2e8f0;
+}
+
+.dark {
+  --brand-50: #1a1b35;
+  --brand-100: #252654;
+  --brand-500: #6366f1;
+  --brand-600: #4f46e5;
+  --brand-700: #818cf8;
+
+  --surface-bg: #0b0f19;
+  --surface-card: #131b2e;
+  --surface-text: #f8fafc;
+  --surface-muted: #94a3b8;
+  --surface-border: #1e293b;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  html {
+    @apply antialiased scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-surface-bg text-surface-text font-sans;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer utilities {
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--surface-bg) 0%,
+      var(--surface-border) 50%,
+      var(--surface-bg) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface-border);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-500);
+  }
+}
