@@ -23,8 +23,8 @@ const frontendDist = path.join(__dirname, "../frontend/dist");
 app.use(express.static(frontendDist));
 
 // For any route not matched by the API, serve the React app (client-side routing)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendDist, "index.html"));
+app.get('/*splat', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
 module.exports = app;
